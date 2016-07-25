@@ -1,0 +1,7 @@
+<li class='list-group-item'>
+	{{piece.name}}
+	<br />
+	<form method='POST' action='/trash/{{piece.id}}?_method=DELETE'>
+	<button class='btn btn-danger'>Delete</button>
+	</form>
+</li>
