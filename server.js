@@ -3,6 +3,10 @@ var path = require('path');
 var swig = require('swig');
 var app = express();
 var routes = require('./routes');
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.set('view engine', 'html');
 app.engine('html', swig.renderFile);

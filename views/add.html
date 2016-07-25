@@ -1,0 +1,13 @@
+{% extends './layout.html' %}
+
+{% block content%}
+	<h1>Add Product</h1>
+	<p>Name</p>
+
+	<form action='/productAdd' method='POST'>
+		<input name='name' type='text' value='Product Name'>
+		<input name='id' type='text' value='Product ID'>			
+		<input type="submit" value="Submit" />
+	</form>
+
+{%endblock%}

@@ -1,5 +1,11 @@
-{% extends './layout.html' %}
+{% extends './layout.html'%}
 
-{% block content %}
+{%block content%}
 	<h1>Products Page</h1>
+	<a class='btn' href='/products/add'>Add a Product</a>
+	<ul>
+		{% for product in products %}
+		{% include './productGroupItem.html' %}		
+		{% endfor %}
+	</ul>
 {%endblock%}
