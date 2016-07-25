@@ -5,10 +5,17 @@ var trash = [
 	},
 	{
 		name:'Jacket',
-		id:2
+		id: 2
 	}
 ]
 
 module.exports = {
-	getTrash: function(){return trash;}
+	getTrash: function(){return trash;},
+	deleteTrash: function(id){
+		var trashToDelete = this.getTrash().filter(function(piece){
+			piece.id === id;
+		})[0];
+		var idx = this.getTrash().indexOf(trashToDelete);
+		this.getTrash().splice(idx, 1);
+	}
 }

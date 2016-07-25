@@ -1,6 +1,8 @@
 var router = require('express').Router();
-var Trash = require('../trash.model.js').getTrash();
+var Trash = require('../trash.model.js');
 var methodOverride = require('method-override');
+
+var trash = Trash.getTrash();
 
 router.use(methodOverride('_method'));
 
@@ -13,11 +15,11 @@ router.get('/products', function(req, res, next){
 });
 
 router.get('/trash', function(req, res, next){
-	res.render('trash', {title: 'AcmeProducts - Trash', trash: Trash})
+	res.render('trash', {title: 'AcmeProducts - Trash', trash: trash})
 });
 
 router.delete('/trash/:id', function(req, res, next){
-	// res.render('trash', {title: 'AcmeProducts - Trash', trash: Trash})
+	Trash.deleteTrash(req.params.id*1);
 	res.redirect('/trash');
 });
 
