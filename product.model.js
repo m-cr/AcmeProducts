@@ -1,4 +1,4 @@
-var products = [
+var _products = [
 	{
 		name: 'Shoe',
 		id: 1
@@ -11,31 +11,36 @@ var products = [
 		name: 'Pants',
 		id: 3
 	}
-]
+];
 
 module.exports = {
-	getProducts: function(){return products;},
-	getAProduct: function(id){
-		var theProduct = this.getProducts().filter(function(product){
-			return product.id === id;
-		});
-		console.log(theProduct);
-		return theProduct;
-	},
-	deleteProduct: function(id){
-		var productToDelete = this.getProducts().filter(function(product){
+	getProducts: function(){
+    return _products;
+  },
+	getProduct: function(id){
+		return this.getProducts().filter(function(product){
 			return product.id === id;
 		})[0];
-		var idx = this.getProducts().indexOf(productToDelete);
+	},
+	deleteProduct: function(id){
+		var idx = this.getProducts().indexOf(this.getProduct(id));
 		this.getProducts().splice(idx, 1);
 	},
 	edit: function(id, name){
-		var theProduct = this.getProducts().filter(function(product){
-			return product.id === id;
-		});
-		theProduct[0].name = name;
+    this.getProduct(id).name = name;
 	},
 	add: function(name, id){
-		products.push({ name: name, id: id });
+    var max = 0;
+    max = this.getProducts().reduce(function(max, product){
+      if(product.id > max)
+        max = product.id;
+      return max;
+    }, 0);
+    max++;
+    var product = {
+      name: name,
+      id: max
+    };
+    this.getProducts().push(product);
 	}
-}
+};

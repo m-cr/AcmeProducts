@@ -3,10 +3,8 @@
 {% block content%}
 	<h1>Edit Product</h1>
 	<p>Name</p>
-	{% for product in products %}
-	<form action='/productUpdate/{{product.id}}' method='POST'>
+	<form action='/products/{{product.id}}?_method=PUT' method='POST'>
 		<input name='name' type='text' value='{{product.name}}'>	
 		<input type="submit" value="Submit" />
 	</form>
-	{% endfor %}
 {%endblock%}
